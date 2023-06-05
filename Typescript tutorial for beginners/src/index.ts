@@ -152,7 +152,7 @@ const our_user: appUser = {
         return `Trial started`
     },
     getCoupon(name: 'Aneesh', value: 10){
-        console.log(`Congrats `)
+        console.log(`Congrats ${name}`)
         return value
     }
 

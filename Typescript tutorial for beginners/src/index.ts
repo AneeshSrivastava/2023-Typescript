@@ -10,27 +10,30 @@ let num: number = 3;
 let str_var = "some string";
 let any_var;
 function sample_function(document: any) {
-    console.log(document);
+    console.log(`Calling sample function whose args is ${document}`);
 }
+sample_function(str_var)
 
 // Arrays
 let arr: number[] = [1, 2, 3, 4];
 let any_arr = [];
 any_arr[0] = 2
 any_arr[1] = 4
+console.log(`This is an array: ${any_arr}`)
 
 // Tuples
 let sample_tup: [number, string] = [342, 'Hello Aneesh']
+console.log(`This is a sample tuple: ${sample_tup}`)
 
 //Enums
 enum Size { Small = 1, Medium, Large };
-let mySize = Size.Medium;
-console.log(mySize)
+let mySize = Size;
+console.log(`An enum with default args: ${mySize}`)
 
 // Enums efficient compilation
 const enum some_example_enum { Low, Medium, High }; // Less lines of code generated in JS file
-let example = some_example_enum.Medium;
-console.log(example)
+let example = some_example_enum.High;
+console.log(`This is an enum: ${example}`)
 
 // Function example
 function CalculateTax(income: number, taxYear = 2022): number {
@@ -40,7 +43,7 @@ function CalculateTax(income: number, taxYear = 2022): number {
 }
 
 let tax = CalculateTax(10_000, 2023)
-console.log(tax)
+console.log(`This years tax is : ${tax}`)
 
 // Objects
 let employee: {
@@ -65,11 +68,14 @@ type Employee ={
 let emp: Employee ={
     id : 1,
     name: "Aneesh",
-    retire:(date: Date) => {
+    retire: (date: Date): Date =>{
         console.log(date)
+        return date
     }
 }
+//const currentDate= new Date()
 
+console.log(console.log(emp))
 // Union types:
 function kgToLbs(weight: number | string): number{
     // Narrowing
@@ -107,7 +113,7 @@ function greet(name: string | null | undefined){
     if(name)
         console.log(name.toUpperCase());
     else
-    console.log("Hola!")
+    console.log("Hola!, I am greet function!")
 }
 greet(undefined)
 
@@ -120,7 +126,7 @@ function getCustomer(id: number ): Customer | null{
 }
 let customer= getCustomer(1);
 // Optional property accessors operator '?.'
-console.log(customer?.birthday?.getFullYear());
+console.log(`Happy birthday: ${customer?.birthday?.getFullYear()}`);
 
 // Optional element accessors operator
 // customers?.[0] --> Access the 1st value of customers array only if that value is not null or undefined
@@ -128,3 +134,27 @@ console.log(customer?.birthday?.getFullYear());
 //Optional Call
 let log: any = null
 log?.(a) // Only call this function if its defined
+
+// Interface
+interface appUser {
+    email: string, 
+    userId: number,
+    googleId? : number, //optional parameter
+    startTrial: () => string
+    getCoupon(couponname: string, value: number): number
+}
+
+const our_user: appUser = {
+    email: 'a@a.com',
+    userId: 2211,
+    googleId : 313,
+    startTrial: () => {
+        return `Trial started`
+    },
+    getCoupon(name: 'Aneesh', value: 10){
+        console.log(`Congrats `)
+        return value
+    }
+
+}
+console.log(`Interface user is: ${JSON.stringify(our_user)}`)

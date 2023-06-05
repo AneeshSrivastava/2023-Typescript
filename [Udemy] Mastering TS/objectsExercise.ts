@@ -42,7 +42,7 @@ const cats: Movie = {
 // For example...
 // getProfit(cats) => -21166652
 
-const getProfit =(movie: Movie) => {
+const getProfit =(movie: Movie): number => {
   return movie.boxOffice.grossWorldwide - movie.boxOffice.budget
 }
 

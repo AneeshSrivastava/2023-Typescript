@@ -106,8 +106,10 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "files":[
-    "configTsIndex.ts",
-    "interfaces.ts"
-  ]
+  // "files":[
+  //   "src/configTsIndex.ts",
+  //   "src/interfaces.ts"
+  // ],
+  "include": ["src"],
+  "exclude": ["src/interfaces.ts"]
 }

@@ -1,16 +1,10 @@
-const btn = document.getElementById("btn") // Type of btn is HTMLElement or null
-console.log(btn);
+const btn = document.getElementById("btn")! // Type of btn is HTMLElement or null
+const inputBox = document.getElementById("todo") as HTMLInputElement;
+const form = document.querySelector("form");
 
-console.log("Hello!".replaceAll('!', '')); // replaceAll() method is only available post EX2021
-btn?.addEventListener("click", () => {
-    alert("btn is clicked!")
-})
-
-// Type assertion with DOM elements 
-const toDoInput = document.getElementById("todo") as HTMLInputElement; // Type Assertion
-const btn2 = document.getElementById("btn2")!;
-
-btn2.addEventListener("click", () => {
-    alert(toDoInput.value) // No need to check for null
-    toDoInput.value="" // Reset the value of input box after clicking!
+form?.addEventListener("submit", (e) => { // e is assumed as "SubmitEvent" by Typescript
+   e.preventDefault(); // Default behavior of JS is to clear the form post submission, so we prevent that
+   console.log("Form SUBMITTED!");
+   inputBox.value="";
 });
+

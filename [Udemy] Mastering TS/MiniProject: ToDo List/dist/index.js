@@ -5,6 +5,9 @@ const form = document.querySelector("form");
 const list = document.getElementById("todolist");
 const todos = readToDos();
 todos.forEach(createToDo);
+function saveToDos() {
+    localStorage.setItem("localToDos", JSON.stringify(todos));
+}
 function readToDos() {
     const jsonStrToDo = localStorage.getItem("localToDos");
     if (jsonStrToDo === null)
@@ -20,13 +23,18 @@ function handleFormSubmit(e) {
     };
     todos.push(newToDo);
     createToDo(newToDo);
-    localStorage.setItem("localToDos", JSON.stringify(todos));
+    saveToDos();
     inputBox.value = "";
 }
 function createToDo(todo) {
     const newLI = document.createElement("li");
     const newCheckBox = document.createElement("input");
     newCheckBox.type = "Checkbox";
+    newCheckBox.checked = todo.completed;
+    newCheckBox.addEventListener("change", () => {
+        todo.completed = newCheckBox.checked;
+        saveToDos();
+    });
     newLI.append(newCheckBox);
     newLI.append(todo.text);
     list.append(newLI);

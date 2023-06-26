@@ -1,9 +1,16 @@
 "use strict";
-const todos = [];
 const btn = document.getElementById("btn"); // Type of btn is HTMLElement or null
 const inputBox = document.getElementById("todo");
 const form = document.querySelector("form");
 const list = document.getElementById("todolist");
+const todos = readToDos();
+todos.forEach(createToDo);
+function readToDos() {
+    const jsonStrToDo = localStorage.getItem("localToDos");
+    if (jsonStrToDo === null)
+        return [];
+    return JSON.parse(jsonStrToDo);
+}
 function handleFormSubmit(e) {
     e.preventDefault(); // Default behavior of JS is to clear the form post submission, so we prevent that
     console.log("Form SUBMITTED!");
@@ -13,6 +20,7 @@ function handleFormSubmit(e) {
     };
     todos.push(newToDo);
     createToDo(newToDo);
+    localStorage.setItem("localToDos", JSON.stringify(todos));
     inputBox.value = "";
 }
 function createToDo(todo) {

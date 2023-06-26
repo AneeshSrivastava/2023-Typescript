@@ -3,6 +3,8 @@ interface ToDo {
     completed: boolean
 }
 
+// Adding a random comment
+
 const btn = document.getElementById("btn")! // Type of btn is HTMLElement or null
 const inputBox = document.getElementById("todo") as HTMLInputElement;
 const form = document.querySelector("form");
